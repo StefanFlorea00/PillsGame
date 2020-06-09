@@ -1,0 +1,146 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Selected.gd" type="Script" id=1]
+[ext_resource path="res://Control.gd" type="Script" id=2]
+[ext_resource path="res://PositionY.gd" type="Script" id=3]
+[ext_resource path="res://MoneyContainer.gd" type="Script" id=4]
+[ext_resource path="res://PositionX.gd" type="Script" id=5]
+[ext_resource path="res://IDContainer.gd" type="Script" id=6]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Control" type="Control" parent="."]
+margin_right = 178.0
+margin_bottom = 231.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="Control"]
+margin_right = 179.0
+margin_bottom = 231.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PanelContainer" type="VBoxContainer" parent="Control/Panel"]
+margin_right = 86.0
+margin_bottom = 75.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="IDContainer" type="HBoxContainer" parent="Control/Panel/PanelContainer"]
+margin_right = 86.0
+margin_bottom = 14.0
+script = ExtResource( 6 )
+
+[node name="IDLabel" type="Label" parent="Control/Panel/PanelContainer/IDContainer"]
+margin_right = 71.0
+margin_bottom = 14.0
+rect_pivot_offset = Vector2( -134.037, 0 )
+text = "BuildingID:"
+
+[node name="ID" type="Label" parent="Control/Panel/PanelContainer/IDContainer/IDLabel"]
+margin_left = 75.0
+margin_right = 83.0
+margin_bottom = 14.0
+rect_pivot_offset = Vector2( -134.037, 0 )
+text = "0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MoneyContainer" type="HBoxContainer" parent="Control/Panel/PanelContainer"]
+margin_top = 18.0
+margin_right = 86.0
+margin_bottom = 32.0
+script = ExtResource( 4 )
+
+[node name="MoneyLabel" type="Label" parent="Control/Panel/PanelContainer/MoneyContainer"]
+margin_right = 47.0
+margin_bottom = 14.0
+rect_pivot_offset = Vector2( -134.037, 0 )
+text = "Money:"
+
+[node name="Money" type="Label" parent="Control/Panel/PanelContainer/MoneyContainer/MoneyLabel"]
+margin_left = 51.0
+margin_right = 59.0
+margin_bottom = 14.0
+rect_pivot_offset = Vector2( -134.037, 0 )
+text = "0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PositionX" type="HBoxContainer" parent="Control/Panel/PanelContainer"]
+margin_top = 36.0
+margin_right = 86.0
+margin_bottom = 50.0
+script = ExtResource( 5 )
+
+[node name="PositionXLabel" type="Label" parent="Control/Panel/PanelContainer/PositionX"]
+margin_right = 35.0
+margin_bottom = 14.0
+rect_pivot_offset = Vector2( -134.037, 0 )
+text = "PosX:"
+
+[node name="X" type="Label" parent="Control/Panel/PanelContainer/PositionX/PositionXLabel"]
+margin_left = 51.0
+margin_right = 59.0
+margin_bottom = 14.0
+rect_pivot_offset = Vector2( -134.037, 0 )
+text = "0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PositionY" type="HBoxContainer" parent="Control/Panel/PanelContainer"]
+margin_top = 54.0
+margin_right = 86.0
+margin_bottom = 68.0
+script = ExtResource( 3 )
+
+[node name="PositionYLabel" type="Label" parent="Control/Panel/PanelContainer/PositionY"]
+margin_right = 34.0
+margin_bottom = 14.0
+rect_pivot_offset = Vector2( -134.037, 0 )
+text = "PosY:"
+
+[node name="Y" type="Label" parent="Control/Panel/PanelContainer/PositionY/PositionYLabel"]
+margin_left = 51.0
+margin_right = 59.0
+margin_bottom = 14.0
+rect_pivot_offset = Vector2( -134.037, 0 )
+text = "0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Selected" type="HBoxContainer" parent="Control/Panel/PanelContainer"]
+margin_top = 72.0
+margin_right = 86.0
+margin_bottom = 86.0
+script = ExtResource( 1 )
+
+[node name="SelectedValue" type="Label" parent="Control/Panel/PanelContainer/Selected"]
+margin_right = 59.0
+margin_bottom = 14.0
+rect_pivot_offset = Vector2( -134.037, 0 )
+text = "Selected:"
+
+[node name="Selected" type="Label" parent="Control/Panel/PanelContainer/Selected/SelectedValue"]
+margin_left = 64.0373
+margin_right = 97.0373
+margin_bottom = 14.0
+rect_pivot_offset = Vector2( -134.037, 0 )
+text = "False"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="id_changed" from="Control" to="Control/Panel/PanelContainer/IDContainer" method="_on_Control_id_changed"]
+[connection signal="money_changed" from="Control" to="Control/Panel/PanelContainer/MoneyContainer" method="_on_Control_money_changed"]
+[connection signal="selected_changed" from="Control" to="Control/Panel/PanelContainer/Selected" method="_on_Control_selected_changed"]
+[connection signal="x_changed" from="Control" to="Control/Panel/PanelContainer/PositionX" method="_on_Control_x_changed"]
+[connection signal="y_changed" from="Control" to="Control/Panel/PanelContainer/PositionY" method="_on_Control_y_changed"]
