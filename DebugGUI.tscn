@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Selected.gd" type="Script" id=1]
 [ext_resource path="res://Control.gd" type="Script" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://MoneyContainer.gd" type="Script" id=4]
 [ext_resource path="res://PositionX.gd" type="Script" id=5]
 [ext_resource path="res://IDContainer.gd" type="Script" id=6]
+[ext_resource path="res://DebugGUI/Label.gd" type="Script" id=7]
+[ext_resource path="res://DebugGUI/Label2.gd" type="Script" id=8]
 
 [node name="Node2D" type="Node2D"]
 
@@ -25,14 +27,16 @@ __meta__ = {
 }
 
 [node name="PanelContainer" type="VBoxContainer" parent="Control/Panel"]
-margin_right = 86.0
-margin_bottom = 75.0
+margin_left = 8.0
+margin_top = 140.0
+margin_right = 177.0
+margin_bottom = 230.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="IDContainer" type="HBoxContainer" parent="Control/Panel/PanelContainer"]
-margin_right = 86.0
+margin_right = 169.0
 margin_bottom = 14.0
 script = ExtResource( 6 )
 
@@ -54,7 +58,7 @@ __meta__ = {
 
 [node name="MoneyContainer" type="HBoxContainer" parent="Control/Panel/PanelContainer"]
 margin_top = 18.0
-margin_right = 86.0
+margin_right = 169.0
 margin_bottom = 32.0
 script = ExtResource( 4 )
 
@@ -76,7 +80,7 @@ __meta__ = {
 
 [node name="PositionX" type="HBoxContainer" parent="Control/Panel/PanelContainer"]
 margin_top = 36.0
-margin_right = 86.0
+margin_right = 169.0
 margin_bottom = 50.0
 script = ExtResource( 5 )
 
@@ -98,7 +102,7 @@ __meta__ = {
 
 [node name="PositionY" type="HBoxContainer" parent="Control/Panel/PanelContainer"]
 margin_top = 54.0
-margin_right = 86.0
+margin_right = 169.0
 margin_bottom = 68.0
 script = ExtResource( 3 )
 
@@ -120,7 +124,7 @@ __meta__ = {
 
 [node name="Selected" type="HBoxContainer" parent="Control/Panel/PanelContainer"]
 margin_top = 72.0
-margin_right = 86.0
+margin_right = 169.0
 margin_bottom = 86.0
 script = ExtResource( 1 )
 
@@ -139,8 +143,32 @@ text = "False"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="PanelContainer2" type="VBoxContainer" parent="Control/Panel"]
+margin_left = 7.0
+margin_top = 12.0
+margin_right = 177.0
+margin_bottom = 95.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Control/Panel/PanelContainer2"]
+margin_right = 170.0
+margin_bottom = 14.0
+text = "WorldPos:"
+script = ExtResource( 7 )
+
+[node name="Label2" type="Label" parent="Control/Panel/PanelContainer2"]
+margin_top = 18.0
+margin_right = 170.0
+margin_bottom = 32.0
+text = "BuildingPos:"
+script = ExtResource( 8 )
+[connection signal="building_pos_changed" from="Control" to="Control/Panel/PanelContainer2/Label2" method="_on_Control_building_pos_changed"]
 [connection signal="id_changed" from="Control" to="Control/Panel/PanelContainer/IDContainer" method="_on_Control_id_changed"]
 [connection signal="money_changed" from="Control" to="Control/Panel/PanelContainer/MoneyContainer" method="_on_Control_money_changed"]
 [connection signal="selected_changed" from="Control" to="Control/Panel/PanelContainer/Selected" method="_on_Control_selected_changed"]
+[connection signal="world_pos_changed" from="Control" to="Control/Panel/PanelContainer2/Label" method="_on_Control_world_pos_changed"]
 [connection signal="x_changed" from="Control" to="Control/Panel/PanelContainer/PositionX" method="_on_Control_x_changed"]
 [connection signal="y_changed" from="Control" to="Control/Panel/PanelContainer/PositionY" method="_on_Control_y_changed"]

@@ -11,7 +11,17 @@ func _ready():
 	make_current()
 
 func _unhandled_input(event: InputEvent):
-	if event is InputEventMouseButton && event.button_index == BUTTON_LEFT:
+
+	if event is InputEventKey:
+		if event.pressed and event.scancode == KEY_W:
+			position.y -= 20
+		if event.pressed and event.scancode == KEY_S:
+			position.y += 20
+		if event.pressed and event.scancode == KEY_D:
+			position.x += 20
+		if event.pressed and event.scancode == KEY_A:
+			position.x -= 20
+	if event is InputEventMouseButton && event.button_index == BUTTON_RIGHT:
 		get_tree().set_input_as_handled();
 		if event.is_pressed():
 			_previousPosition = event.position;

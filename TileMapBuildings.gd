@@ -6,8 +6,8 @@ extends TileMap
 # var b = "text"
 var money = []
 var used_cells = get_used_cells()
-var buildings = []
 var usedCells = []
+var buildings = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -66,10 +66,34 @@ func setBuildingSelected(x,y,selected):
 		if (buildings[building].position.x == x && buildings[building].position.y == y):
 			buildings[building].selected = selected
 			
+func getSelectedBuilding():
+	for building in buildings.size():
+		if (buildings[building].selected):
+			return buildings[building]
+
+
 func getBuildingSelected(x,y):
 	for building in buildings.size():
 		if (buildings[building].position.x == x && buildings[building].position.y == y):
 			return buildings[building].selected
+			
+func setBuilding(x,y):
+	var building : Building = Building.new()
+	building.position.x = x
+	building.position.y = y
+	building.money = 15
+	building.id = 100+ buildings.size()
+	buildings.append(building)
+	set_cellv(Vector2(x, y),1)
+	print("ADDED: ", building.id, building.position)
+
+func deleteBuilding(x,y):
+	for building in buildings.size():
+		if (buildings[building].position.x == x && buildings[building].position.y == y):
+			print("DELETED:", buildings[building].id, buildings[building].position)
+			buildings.erase(buildings[building])
+			set_cellv(Vector2(x, y),-1)
+
 #func addCellData():
 #	for i in range(buildings.size()):
 #		used_cells[i] = 15
